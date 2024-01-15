@@ -1,13 +1,16 @@
 <!DOCTYPE html>
+<script src="{{ asset('js/jquery.min.js') }}"></script>
+<script src="{{ asset('js/popper.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
 <html lang="en">
   <head>
+    <title>Carozza App</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Varela+Round">
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <title>Carozza App</title>
-
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Varela+Round">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
@@ -35,9 +38,17 @@
     </nav>
 
     @yield('content')
-
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/popper.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
   </body>
 </html>
+
+<script>
+  const filterManufacturerId = document.getElementById('filter_manufacturer_id');
+
+  if (filterManufacturerId) {
+    filterManufacturerId.addEventListener('change', () => {
+        const manufacturerId = filterManufacturerId.value || filterManufacturerId.options[filterManufacturerId.selectedIndex].value;
+        const baseUrl = window.location.href.split('?')[0];
+        window.location.href = `${baseUrl}?manufacturer_id=${manufacturerId}`;
+    });
+  }
+</script>
