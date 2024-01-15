@@ -8,14 +8,14 @@
         <div class="card">
           <div class="card-header card-title">
             <strong>Add New Car</strong>
-          </div>           
+          </div>
           <div class="card-body">
 
             <form action="{{ route('cars.save')}}" method="POST">
               @csrf
               @include('cars.forms')
             </form>
-            
+
           </div>
         </div>
       </div>

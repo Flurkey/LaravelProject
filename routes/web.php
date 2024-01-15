@@ -26,3 +26,4 @@ Route::get('/cars/{id}', [CarController::class, 'show'])->name('cars.show');
 Route::get('/manufacturers', [ManufacturerController::class, 'index'])->name('manufacturers.index');
 
 Route::post('/cars', [CarController::class, 'save'])->name('cars.save');
+Route::delete('/cars/{id}', [CarController::class, 'delete'])->name('cars.delete');

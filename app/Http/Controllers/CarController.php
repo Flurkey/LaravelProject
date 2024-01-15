@@ -20,28 +20,37 @@ class CarController extends Controller
         return view('cars.index', compact('cars', 'manufacturers'));
     }
 
-    function save(Request $toSave) {
+    function save(Request $toSave)
+    {
         $toSave->validate([
-            'model'=>'required',
-            'year'=>'required|digits:4',
-            'salesperson_email'=>'required|email',
-            'manufacturer_id'=>'required|exists:manufacturers,id'
+            'model' => 'required',
+            'year' => 'required|digits:4',
+            'salesperson_email' => 'required|email',
+            'manufacturer_id' => 'required|exists:manufacturers,id'
         ]);
-    
+
         $manufacturerId = $toSave->input('manufacturer_id', 1);
-    
+
         Car::create(array_merge($toSave->all(), ['manufacturer_id' => $manufacturerId]));
-    
+
         return redirect()->route('cars.index')->with('message', 'Car added successfully');
     }
 
-    function create() {
+    function create()
+    {
         $manufacturers = Manufacturer::all();
         return view('cars.create', compact('manufacturers'));
     }
 
-    function show($id) {
+    function show($id)
+    {
         $car = Car::find($id);
         return view('cars.show', compact('car'));
+    }
+
+    function delete($id)
+    {
+        Car::findOrFail($id)->delete();
+        return redirect()->route('cars.index')->with('message', 'Car deleted successfully');
     }
 }

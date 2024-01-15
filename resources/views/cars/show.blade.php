@@ -8,7 +8,7 @@
         <div class="card">
           <div class="card-header card-title">
             <strong>Car Details</strong>
-          </div>           
+          </div>
           <div class="card-body">
             <div class="row">
               <div class="col-md-12">
@@ -42,9 +42,17 @@
                 <hr>
 
                 <div class="col-md-9 offset-md-4">
+                  <div class="btn-group" role="group">
                     <a href="#" class="btn btn-info">Edit</a>
-                    <a href="#" class="btn btn-outline-danger">Delete</a>
-                    <a href="{{ route('cars.index') }}" class="btn btn-outline-secondary">Cancel</a>
+                    <form action="{{ route('cars.delete', $car->id) }}" method="POST"
+                      onsubmit="return confirm('Are you sure?')">
+                      @csrf
+                      @method('DELETE')
+                      <button type="submit" class="btn btn-outline-danger" style="margin-left: 5px;">Delete</button>
+                    </form>
+                    <a href="{{ route('cars.index') }}" class="btn btn-outline-secondary"
+                      style="margin-left: 5px;">Cancel</a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -52,6 +60,5 @@
         </div>
       </div>
     </div>
-  </div>
 </main>
 @endsection
