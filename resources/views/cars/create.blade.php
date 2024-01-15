@@ -13,7 +13,7 @@
 
             <form action="{{ route('cars.save')}}" method="POST">
               @csrf
-              @include('cars.form')
+              @include('cars.forms')
             </form>
             
           </div>

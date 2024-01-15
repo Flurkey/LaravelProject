@@ -34,21 +34,21 @@
         </div>
       </div>
       <div class="form-group row">
-        <label for="manufacturer_id" class="col-md-3 col-form-label">Manufacturer</label>
-        <div class="col-md-9">
-          <select name="manufacturer_id" id="manufacturer_id" value="{{ old('manufacturer_id') }}" class="form-control @error('manufacturer_id') is-invalid @enderror">
-          <option value="">Select Manufacturer</option>
-          @foreach ($manufacturers as $id => $name)
-        <option {{ $id == old('manufacturer_id') ? 'selected' : '' }} value="{{ $id }}">{{ $name }}</option>
-          @endforeach
-          </select>
-          @error ('manufacturer_id')
-            <div class="invalid-feedback">
-               {{ $message }}
-            </div>
-          @enderror
+    <label for="manufacturer_id" class="col-md-3 col-form-label">Manufacturer</label>
+    <div class="col-md-9">
+            <select name="manufacturer_id" id="manufacturer_id" value="{{ old('manufacturer_id') }}" class="form-control @error('manufacturer_id') is-invalid @enderror">
+                <option value="">Select Manufacturer</option>
+                @foreach ($manufacturers as $manufacturer)
+                    <option {{ $manufacturer->id == old('manufacturer_id') ? 'selected' : '' }} value="{{ $manufacturer->id }}">{{ $manufacturer->name }}</option>
+                @endforeach
+            </select>
+            @error ('manufacturer_id')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
         </div>
-      </div>
+    </div>
       <hr>
       <div class="form-group row mb-0">
         <div class="col-md-9 offset-md-3">

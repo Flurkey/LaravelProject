@@ -29,6 +29,7 @@
                   <th scope="col">Actions</th>
                 </tr>
               </thead>
+
               <tbody>            
                 @if ($cars->count())
                   @foreach ($cars as $index => $car)
@@ -47,6 +48,7 @@
                   @endforeach
                 @endif
               </tbody>
+
             </table> 
           </div>
         </div>
