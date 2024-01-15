@@ -11,7 +11,7 @@ class CarController extends Controller
     public function index()
     {
         $manufacturers = Manufacturer::orderBy('name')->pluck('name', 'id')->prepend('All Manufacturers', '');
-        if (request('manufacturer_id') == null) {
+        if (!request('manufacturer_id')) {
             $cars = Car::all();
         } else {
             $cars = Car::where('manufacturer_id', request('manufacturer_id'))->get();
@@ -21,7 +21,7 @@ class CarController extends Controller
     }
 
     function create() {
-        $manufacturers = Manufacturer::all(); // passing manufacturers to be iterated in drop-down list
+        $manufacturers = Manufacturer::all();
         return view('cars.create', compact('manufacturers'));
     }
 
